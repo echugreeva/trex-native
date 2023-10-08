@@ -2,7 +2,7 @@ import React from 'react';
 
 import {useState} from 'react'
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, SafeAreaView, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View, SafeAreaView, TouchableOpacity, ImageBackground, Image } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { AntDesign } from '@expo/vector-icons';
 import { MaterialIcons } from '@expo/vector-icons'; 
@@ -133,7 +133,39 @@ const trips =  [
 
 export default function App() {
   const [tripToShow, setTrip] = useState(trips[0])
+  const [imgIndex, setIndex] = useState(0)
 
+  const scrollImg = (direction) => {
+    let length = tripToShow[0].image.length
+
+    console.log(length)
+    console.log(imgIndex)
+    if (direction == 'forward' && imgIndex < length - 1) {
+
+        setIndex(imgIndex + 1)
+
+    }
+    if (direction == 'back' && imgIndex >= 1) {
+
+        setIndex(imgIndex - 1)
+
+    }
+    if (direction == 'back' && imgIndex === 0) {
+
+        setIndex(length - 1)
+
+
+    }
+    if (direction == 'forward' && imgIndex === length - 1) {
+
+        setIndex(0)
+
+
+    }
+
+    console.log(imgIndex)
+
+}
   return (
     // <NavigationContainer>
     //   <View>
@@ -150,8 +182,19 @@ export default function App() {
     // </NavigationContainer>
     <SafeAreaView style={[styles.container, { backgroundColor: 'teal' }]}>
       <View style={[styles.container, { justifyContent: 'space-between', width: '100%' }]}>
-        <View>
-          <Text>{tripToShow.trip_title}</Text>
+        <View style={{height:"85%", width:'100%'}}>
+          {/* <Image
+           source={{uri:'https://images.pexels.com/photos/1320684/pexels-photo-1320684.jpeg?auto=compress&cs=tinysrgb&w=800'}}
+           style={{height: '100%', width: '100%'}}
+          /> */}
+          <ImageBackground  
+          source={{uri:'https://images.pexels.com/photos/1287460/pexels-photo-1287460.jpeg?auto=compress&cs=tinysrgb&w=800'}}
+          style={{height: '100%', width: '100%', resizeMode: 'contain'}}>
+            <Text>{tripToShow.trip_title}</Text>
+            <Text>{tripToShow.location}</Text>
+            
+          </ImageBackground>
+          
         </View>
         <View style={styles.bottom}>
           <TouchableOpacity><AntDesign name="close" size={40} color="red" />
@@ -169,14 +212,14 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    // backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
 
   },
 
   bottom: {
-    flex: 0,
+    // flex: 0,
     flexDirection: 'row',
     backgroundColor: '#fff',
     height: 80,
