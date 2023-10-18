@@ -7,6 +7,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { AntDesign } from '@expo/vector-icons';
 import { MaterialIcons } from '@expo/vector-icons';
 import { Ionicons } from '@expo/vector-icons';
+import ImageCard from './components/ImageCard';
 
 
 const trips = [
@@ -191,44 +192,41 @@ export default function App() {
     //   </View>
 
     // </NavigationContainer>
-    <SafeAreaView style={[styles.container, { backgroundColor: 'white' }]}>
-      <View style={[styles.container, { justifyContent: 'space-between', width: '100%' }]}>
-        <View style={{ height: "90%", width: '100%' }}>
-          {/* <Image
-           source={{uri:'https://images.pexels.com/photos/1320684/pexels-photo-1320684.jpeg?auto=compress&cs=tinysrgb&w=800'}}
-           style={{height: '100%', width: '100%'}}
-          /> */}
-          <ImageBackground
-            source={{ uri: imgUrl }}
-            style={{ height: '100%', width: '100%', resizeMode: 'contain' }}>
-            <Text>{tripToShow.trip_title}</Text>
-            <Text>{tripToShow.location}</Text>
-            <View style={styles.expandable}>
-              <TouchableOpacity onPress={ toggleExpanded }>
-                <AntDesign name="infocirlceo" size={24} color="black" />
-              </TouchableOpacity>
-              {expanded && <View>
-                <Text>Trip details:</Text>
-                <Text>
-                {tripToShow.description}
-                </Text>
-                </View>}
+    // <SafeAreaView style={[styles.container, { backgroundColor: 'white' }]}>
+    //   <View style={[styles.container, { justifyContent: 'space-between', width: '100%' }]}>
+    //     <View style={{ height: "90%", width: '100%' }}>
+    //       <ImageBackground
+    //         source={{ uri: imgUrl }}
+    //         style={{ height: '100%', width: '100%', resizeMode: 'contain' }}>
+    //         <Text>{tripToShow.trip_title}</Text>
+    //         <Text>{tripToShow.location}</Text>
+    //         <View style={styles.expandable}>
+    //           <TouchableOpacity onPress={ toggleExpanded }>
+    //             <AntDesign name="infocirlceo" size={24} color="black" />
+    //           </TouchableOpacity>
+    //           {expanded && <View>
+    //             <Text>Trip details:</Text>
+    //             <Text>
+    //             {tripToShow.description}
+    //             </Text>
+    //             </View>}
 
-            </View>
+    //         </View>
 
 
-          </ImageBackground>
+    //       </ImageBackground>
 
-        </View>
-        <View style={styles.bottom}>
-          <TouchableOpacity><AntDesign name="close" size={40} color="red" />
-          </TouchableOpacity>
-          <TouchableOpacity><MaterialIcons name="stars" size={40} color="cyan" /></TouchableOpacity>
-          <TouchableOpacity><Ionicons name="md-heart" size={40} color="green" /></TouchableOpacity>
-        </View>
-      </View>
+    //     </View>
+    //     <View style={styles.bottom}>
+    //       <TouchableOpacity><AntDesign name="close" size={40} color="red" />
+    //       </TouchableOpacity>
+    //       <TouchableOpacity><MaterialIcons name="stars" size={40} color="cyan" /></TouchableOpacity>
+    //       <TouchableOpacity><Ionicons name="md-heart" size={40} color="green" /></TouchableOpacity>
+    //     </View>
+    //   </View>
 
-    </SafeAreaView>
+    // </SafeAreaView>
+    <ImageCard/>
 
   );
 }
