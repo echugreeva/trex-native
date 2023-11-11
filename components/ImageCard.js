@@ -185,29 +185,33 @@ const ImageCard = () => {
           <ImageBackground
             source={{ uri: imgUrl }}
             style={{ height: '100%', width: '100%', resizeMode: 'contain' }}>
-            <Text>{tripToShow.trip_title}</Text>
-            <Text>{tripToShow.location}</Text>
+              <View style={{height: '85%',justifyContent: 'space-between', flexDirection: 'row', alignItems: 'center' }}>
+                <TouchableOpacity>
+                  <AntDesign name="left" size={24} color="white" onPress={()=>{scrollImg('back')}} />
+                </TouchableOpacity>
+                <TouchableOpacity style={{}}>
+                  <AntDesign name="right" size={24} color="white" onPress={()=>{scrollImg('forward')}} />
+                </TouchableOpacity>
+              </View>
+            <Text style={styles.textRegular}>{tripToShow.trip_title}</Text>
+            <Text style={styles.textRegular}>{tripToShow.location}</Text>
             <View style={styles.expandable}>
               <TouchableOpacity onPress={toggleExpanded}>
-                <AntDesign name="infocirlceo" size={24} color="black" />
+                <AntDesign name="infocirlceo" size={24} color="white" />
               </TouchableOpacity>
-              <TouchableOpacity>
-                <AntDesign name="right" size={24} color="white" onPress={()=>{scrollImg('forward')}} />
-              </TouchableOpacity>
-              <TouchableOpacity>
-                <AntDesign name="left" size={24} color="white" onPress={()=>{scrollImg('back')}} />
-              </TouchableOpacity>
-              {expanded && <View>
+              {expanded && <ScrollView style={{backgroundColor: 'white'}}>
                 <Text>Trip details:</Text>
                 <Text>
                   {tripToShow.description}
                 </Text>
-              </View>}
+              </ScrollView>}
+              
 
             </View>
 
 
           </ImageBackground>
+          
 
         </View>
         <View style={styles.bottom}>
@@ -243,6 +247,17 @@ const styles = StyleSheet.create({
 
 
   },
+
+  textHeader: {
+
+  },
+
+  textRegular: {
+    color: "white",
+    fontSize: 18,
+    fontWeight: "bold",
+    padding: 2
+  }
 
 });
 
